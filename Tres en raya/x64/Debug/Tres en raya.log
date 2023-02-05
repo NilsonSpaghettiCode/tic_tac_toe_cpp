@@ -1,4 +1,13 @@
-﻿  Main.cpp
+﻿  Aplication.cpp
+  Casilla.cpp
+  GameState.cpp
+  ImpBoard.cpp
+  ImplPlayerDAO.cpp
+  MainMenuState.cpp
+  PatronTicTacToe.cpp
   Player.cpp
+  Main.cpp
+  RegisterPlayerState.cpp
+  ScoreBoardState.cpp
   Generating Code...
-  Tres en raya.vcxproj -> D:\Documentos\Programaciones\C++\Tres en raya\x64\Debug\Tres en raya.exe
+  Tres en raya.vcxproj -> D:\Documentos\Programaciones\C++\TicTacToe\x64\Debug\Tres en raya.exe
