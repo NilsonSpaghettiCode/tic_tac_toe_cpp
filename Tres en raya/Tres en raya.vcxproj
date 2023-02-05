@@ -147,6 +147,8 @@
     <ClInclude Include="Casilla.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="IEntity.h" />
+    <ClInclude Include="IMongoCollection.h" />
+    <ClInclude Include="IMongoConection.h" />
     <ClInclude Include="IObserver.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MHeaders.h" />

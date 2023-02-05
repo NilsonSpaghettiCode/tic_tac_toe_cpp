@@ -1,4 +1,7 @@
 #pragma once
+#include "IMongoConection.h"
+#include "IMongoCollection.h"
+
 #include "Aplication.h"
 #include "Casilla.h"
 #include "PatronTicTacToe.h"
