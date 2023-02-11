@@ -1,4 +1,7 @@
 #pragma once
+
+#include "PlayerDAO.h" 
+
 #include "IMongoConection.h"
 #include "IMongoCollection.h"
 

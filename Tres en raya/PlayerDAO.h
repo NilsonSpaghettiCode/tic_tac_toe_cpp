@@ -1,6 +1,12 @@
 #pragma once
-#include <list>
+
 #include "Player.h"
+
+#include <list>
+
+#include "IMongoCollection.h"
+
+
 class PlayerDAO
 {
 private:
@@ -12,10 +18,13 @@ public:
 	virtual void			  updatePlayer(Player *& player) = 0;
 };
 
+
+
 class ImplPlayerDAO : public PlayerDAO
 {
 public:
-	ImplPlayerDAO();
+	ImplPlayerDAO(IMongoCollection *& collection_player);
+	
 	~ImplPlayerDAO();
 
 	std::list<Player> getAllPlayers()               override;
@@ -24,6 +33,9 @@ public:
 	void              updatePlayer(Player*& player) override;
 
 private:
+	IMongoCollection* collection_player;
 
 
 };
+
+

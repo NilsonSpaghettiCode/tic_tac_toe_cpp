@@ -2,11 +2,6 @@
 ///Intern Utilities
 #include "MHeaders.h"
 
-#include <mongocxx/client.hpp>
-#include <mongocxx/instance.hpp>
-#include <bsoncxx/builder/basic/document.hpp>
-#include <bsoncxx/builder/stream/document.hpp>
-#include <mongocxx/exception/bulk_write_exception.hpp>
 
 IAplication* app;
 
@@ -18,10 +13,54 @@ int main()
 	//app = new Aplication(new MainMenuState);
 	//app->run();
 	
-	Player* p1 = new Player("DarkWizardGM", 'X', 'O');
-	Player* p2 = new Player("DarkLordGM",   'X', 'O');
+	/*
+	ISuject* C1 = new Casilla(1);
+	ISuject* C2 = new Casilla(2);
+	ISuject* C3 = new Casilla(3);
+
+	ISuject* C4 = new Casilla(4);
+	ISuject* C5 = new Casilla(5);
+	ISuject* C6 = new Casilla(6);
+
+	ISuject* C7 = new Casilla(7);
+	ISuject* C8 = new Casilla(8);
+	ISuject* C9 = new Casilla(9);
+	
+	PatronTicTacToe* H1 = new PatronTicTacToe(1);
+
+	PatronTicTacToe* V1 = new PatronTicTacToe(4);
+
+	H1->addSuject(C1);
+	H1->addSuject(C2);
+	H1->addSuject(C3);
+
+	V1->addSuject(C1);
+	V1->addSuject(C4);
+	V1->addSuject(C7);
+
+	Casilla* aux = dynamic_cast<Casilla*>(C1);
 	
 
+	aux->changeState(Casilla::J1);
+
+	H1->showCounts();
+	V1->showCounts();
+
+
+	aux = dynamic_cast<Casilla*>(C2);
+
+
+	H1->showCounts();
+	V1->showCounts();
+
+	*/
+
+	
+	Player* p1 = new Player("Yolovero", 'X', 'O');
+	Player* p2 = new Player("JoseYolo",   'X', 'O');
+	
+	p1->to_string();
+	
 	std::string db_name = "bq3g0huudu0newc";
 	std::string collection_player = "players";
 	std::string uri = 
@@ -31,36 +70,10 @@ int main()
 	IMongoConection::initInstance();
 	IMongoCollection* collection_mongo = new MongoCollection(collection_player, db_name, uri);
 	
-	bsoncxx::builder::stream::document doc1{};
+	PlayerDAO* player_dao = new ImplPlayerDAO(collection_mongo);
+	player_dao->createPlayer(p1);
+	std::cout << "Player creado: "<<p1->getWins();
+	
 
-	collection_mongo->getCollection().insert_one(doc1.view());
-	//mongocxx::client c = collection_mongo->getConnection();
-	//mongocxx::client c1 = collection_mongo->getConnection();
-	//mongocxx::database bd = (c1)[db_name];
-	//mongocxx::collection coll =  bd[collection_player];
-
-	//
-	
-	
-	/*
-	
-	
-	
-	bsoncxx::builder::stream::document doc1{};
-
-	doc1 << "Nickname" << p2->getNickname();
-	doc1 << "Symbol" << p2->getSymbol();
-	doc1 << "AltSymbol" << p2->getAltSymbol();
-	try
-	{
-		mongo_collection->getCollection().insert_one(doc1.view());
-		std::cout << "NO Error";
-	}
-	catch (const mongocxx::bulk_write_exception& a)
-	{
-		std::cout << "Error" << a.what();
-	}
-	*/
-	
 	return 0;
 }

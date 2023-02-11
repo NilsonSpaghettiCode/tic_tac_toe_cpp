@@ -11,6 +11,7 @@ void PatronTicTacToe::Update(int id)
 {
     //std::cout << "Update: +" << id<<std::endl;
     this->addToCount(id);
+
 }
 
 void PatronTicTacToe::addSuject(ISuject*& casilla)

@@ -1,6 +1,11 @@
 #pragma once
+
 #include "IMongoConection.h"
+
 #include <mongocxx/client.hpp>
+
+#include <string>
+
 class IMongoCollection : public IMongoConection
 {
 public:
@@ -39,44 +44,44 @@ private:
 
 };
 
-MongoCollection::MongoCollection(std::string collection_name, std::string db_name, std::string uri)
+inline MongoCollection::MongoCollection(std::string collection_name, std::string db_name, std::string uri)
 {
 	this->collection_name = collection_name;
-	this->db_name		  = db_name;
-	this->uri			  = uri;
+	this->db_name = db_name;
+	this->uri = uri;
 	this->conection_mongo = new mongocxx::client(mongocxx::uri{ this->uri });
 }
 
-MongoCollection::~MongoCollection()
+inline MongoCollection::~MongoCollection()
 {
 
 }
 
-mongocxx::collection MongoCollection::getCollection()
+inline mongocxx::collection MongoCollection::getCollection()
 {
 	mongocxx::collection collection = this->getDB()[this->collection_name];
 	return collection;
 }
 
-void MongoCollection::setCollection(std::string name_collection)
+inline void MongoCollection::setCollection(std::string name_collection)
 {
 	this->collection_name = name_collection;
 }
 
-mongocxx::database MongoCollection::getDB()
+inline mongocxx::database MongoCollection::getDB()
 {
 	mongocxx::client* client = this->getConnection();
 	mongocxx::database db    = client->database(this->db_name);
 	return db;
 }
 
-mongocxx::client* MongoCollection::getConnection()
+inline mongocxx::client* MongoCollection::getConnection()
 {
 	
 	return this->conection_mongo;
 }
 
-void MongoCollection::setDB(std::string db_name)
+inline void MongoCollection::setDB(std::string db_name)
 {
 	this->db_name = db_name;
 }

@@ -1,0 +1,12 @@
+{
+    "name": "3t-test",
+    "version": "1.0.0",
+    "dependencies": [
+        {
+            "name": "mongo-cxx-driver",
+            "version>=": "3.6.7"
+        }
+    ],
+    
+    "builtin-baseline":"9fd3bd594f41afb8747e20f6ac9619f26f333cbe"
+}
