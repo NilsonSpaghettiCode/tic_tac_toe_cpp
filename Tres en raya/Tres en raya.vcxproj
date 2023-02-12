@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="Aplication.cpp" />
     <ClCompile Include="Casilla.cpp" />
+    <ClCompile Include="ConfigDB.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="ImpBoard.cpp" />
     <ClCompile Include="ImplPlayerDAO.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="AplicationState.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Casilla.h" />
+    <ClInclude Include="ConfigDB.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="IEntity.h" />
     <ClInclude Include="IMongoCollection.h" />
@@ -161,6 +163,7 @@
     <ClInclude Include="RegisterPlayerState.h" />
     <ClInclude Include="ScoreBoardState.h" />
     <ClInclude Include="Suject.h" />
+    <ClInclude Include="SystemConfig.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\x64\Debug\player_config.txt" />

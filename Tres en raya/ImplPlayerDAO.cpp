@@ -8,6 +8,11 @@
 using namespace bsoncxx::types;
 using namespace bsoncxx::builder::basic;
 
+ImplPlayerDAO::ImplPlayerDAO()
+{
+	this->collection_player = nullptr;
+}
+
 ImplPlayerDAO::ImplPlayerDAO(IMongoCollection *& collection_player)
 {
 	this->collection_player = collection_player;
@@ -56,4 +61,5 @@ void ImplPlayerDAO::createPlayer(Player *& player)
 
 void ImplPlayerDAO::updatePlayer(Player*& player)
 {
+
 }

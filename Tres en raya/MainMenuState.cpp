@@ -15,14 +15,15 @@ void MainMenuState::onGame()
 
 void MainMenuState::onScoreBoard()
 {
-	AplicationState* aux_state = new ScoreBoardState;
+	AplicationState* aux_state = new ScoreBoardState(this->player_dao);
 	this->context->changeState(aux_state);
 	this->context->onScoreBoard();
 }
 
 void MainMenuState::onRegisterPlayer()
 {
-	AplicationState* aux_state = new RegisterPlayerState;
+	
+	AplicationState* aux_state = new RegisterPlayerState(this->player_dao);
 	this->context->changeState(aux_state);
 	this->context->onRegisterPlayer();
 }

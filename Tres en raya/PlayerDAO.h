@@ -24,7 +24,8 @@ class ImplPlayerDAO : public PlayerDAO
 {
 public:
 	ImplPlayerDAO(IMongoCollection *& collection_player);
-	
+	ImplPlayerDAO();
+
 	~ImplPlayerDAO();
 
 	std::list<Player> getAllPlayers()               override;

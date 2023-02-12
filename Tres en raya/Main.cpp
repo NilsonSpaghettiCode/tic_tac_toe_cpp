@@ -10,8 +10,9 @@ bool IPlayer::isInitialized = false;
 
 int main()
 {
-	//app = new Aplication(new MainMenuState);
-	//app->run();
+	AplicationState* state_init = nullptr;
+	app = new Aplication(state_init);
+	app->run();
 	
 	/*
 	ISuject* C1 = new Casilla(1);
@@ -54,26 +55,6 @@ int main()
 	V1->showCounts();
 
 	*/
-
-	
-	Player* p1 = new Player("Yolovero", 'X', 'O');
-	Player* p2 = new Player("JoseYolo",   'X', 'O');
-	
-	p1->to_string();
-	
-	std::string db_name = "bq3g0huudu0newc";
-	std::string collection_player = "players";
-	std::string uri = 
-
-	"mongodb://ua7mz3ffsgh3vgghakje:yZZa32ov8vuRf1ER4cEh@n1-c2-mongodb-clevercloud-customers.services.clever-cloud.com:27017,n2-c2-mongodb-clevercloud-customers.services.clever-cloud.com:27017/bq3g0huudu0newc?replicaSet=rs0";
-
-	IMongoConection::initInstance();
-	IMongoCollection* collection_mongo = new MongoCollection(collection_player, db_name, uri);
-	
-	PlayerDAO* player_dao = new ImplPlayerDAO(collection_mongo);
-	player_dao->createPlayer(p1);
-	std::cout << "Player creado: "<<p1->getWins();
-	
 
 	return 0;
 }

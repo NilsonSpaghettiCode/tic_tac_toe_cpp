@@ -1,10 +1,6 @@
 #include "GameState.h"
 #include <iostream>
 
-Game::Game(void)
-{
-}
-
 void Game::onGame()
 {
 

@@ -1,6 +1,8 @@
 #include "Aplication.h"
 #include <iostream>
+#include "IMongoConection.h"
 
+#include "MainMenuState.h"
 
 void Aplication::onGame()
 {
@@ -24,6 +26,12 @@ void Aplication::onMainMenu()
 
 Aplication::Aplication(AplicationState* stateInitial): state_(nullptr)
 {
+	this->loadConfigs();
+	IMongoCollection
+	PlayerDAO* player_dao = new ImplPlayerDAO();
+
+	stateInitial = new MainMenuState(player_dao);
+	this->config_modular = new ConfigDB();
 	this->changeState(stateInitial);
 }
 
@@ -41,5 +49,17 @@ void Aplication::changeState(AplicationState *& state)
 
 void Aplication::run()
 {
+	
 	this->onMainMenu();
+}
+
+void Aplication::loadConfigs()
+{
+	this->config_modular->load();
+	IMongoConection::initInstance();
+}
+
+SystemConfig* Aplication::getSystemConfig()
+{
+	return this->config_modular;
 }

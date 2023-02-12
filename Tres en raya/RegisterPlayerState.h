@@ -2,10 +2,20 @@
 #include "AplicationState.h"
 class RegisterPlayerState : public AplicationState
 {
-	void onGame();
-	void onScoreBoard();
-	void onRegisterPlayer();
-	void onMainMenu();
+	//Constructor
+public:
+	RegisterPlayerState(PlayerDAO* & player_dao) : AplicationState(player_dao)
+	{
+
+	}
+
+	//States
+	void onGame()			override;
+	void onScoreBoard()		override;
+	void onRegisterPlayer() override;
+	void onMainMenu()		override;
+
+private:
 
 };
 

@@ -3,10 +3,14 @@
 class ScoreBoardState : public AplicationState
 {
 public:
-	//ScoreBoardState();
-	void onGame();
-	void onScoreBoard();
-	void onRegisterPlayer();
-	void onMainMenu();
+	ScoreBoardState(PlayerDAO* player_dao) : AplicationState(player_dao)
+	{
+
+	}
+
+	void onGame() override;
+	void onScoreBoard() override;
+	void onRegisterPlayer() override;
+	void onMainMenu() override;
 };
 

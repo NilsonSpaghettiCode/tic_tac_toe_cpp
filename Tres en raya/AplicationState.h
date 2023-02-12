@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Aplication.h"
+#include "PlayerDAO.h"
 
 #include <iostream>
 class IAplication;
@@ -9,6 +10,7 @@ class AplicationState
 {
 protected:
 	IAplication* context;
+	PlayerDAO* player_dao;
 
 public:
 
@@ -23,9 +25,16 @@ public:
 		this->context = context;
 	};
 
+	AplicationState(PlayerDAO* player_dao): player_dao(nullptr)
+	{
+		this->player_dao = player_dao;
+	}
+
 	virtual ~AplicationState()
 	{
 		std::cout << "Estado eliminado" << std::endl;
 	}
 
+	
+	
 };

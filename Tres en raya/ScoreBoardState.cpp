@@ -35,7 +35,7 @@ void ScoreBoardState::onRegisterPlayer()
 
 void ScoreBoardState::onMainMenu()
 {
-	AplicationState* aux_state = new MainMenuState;
+	AplicationState* aux_state = new MainMenuState(this->player_dao);
 	this->context->changeState(aux_state);
 	this->context->onMainMenu();
 }

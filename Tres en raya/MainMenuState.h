@@ -1,13 +1,18 @@
 #pragma once
 
 #include "AplicationState.h"
+
 class MainMenuState : public AplicationState
 {
 public:
-	//MainMenuState();
-	void onGame();
-	void onScoreBoard();
-	void onRegisterPlayer();
-	void onMainMenu();
+	MainMenuState(PlayerDAO* player_dao) : AplicationState(player_dao) 
+	{
+
+	}
+
+	void onGame() override;
+	void onScoreBoard() override;
+	void onRegisterPlayer() override;
+	void onMainMenu() override;
 };
 

@@ -19,6 +19,12 @@
     <Filter Include="Header Files\Interfaces">
       <UniqueIdentifier>{871ecc98-57c5-4be0-9519-3c23761f39fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Config">
+      <UniqueIdentifier>{653f3396-c6c5-411b-a202-30deaec82f1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CoreGame">
+      <UniqueIdentifier>{e81f4b25-6f08-4db5-acb7-0a94e98fa784}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -54,27 +60,15 @@
     <ClCompile Include="ImplPlayerDAO.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
+    <ClCompile Include="ConfigDB.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Board.h">
-      <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="IObserver.h">
-      <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="Casilla.h">
-      <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="PatronTicTacToe.h">
-      <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
     <ClInclude Include="MHeaders.h">
-      <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="Suject.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
@@ -106,6 +100,27 @@
     </ClInclude>
     <ClInclude Include="IMongoCollection.h">
       <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigDB.h">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemConfig.h">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="IObserver.h">
+      <Filter>Header Files\CoreGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Casilla.h">
+      <Filter>Header Files\CoreGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Header Files\CoreGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Suject.h">
+      <Filter>Header Files\CoreGame</Filter>
+    </ClInclude>
+    <ClInclude Include="PatronTicTacToe.h">
+      <Filter>Header Files\CoreGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
