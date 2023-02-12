@@ -27,7 +27,8 @@ void Aplication::onMainMenu()
 Aplication::Aplication(AplicationState* stateInitial): state_(nullptr)
 {
 	this->loadConfigs();
-	IMongoCollection
+	
+	IMongoCollection* imc = new MongoCollection(this->config_modular->getCollection(), this->config_modular->getDB(), this->config_modular->getUri());
 	PlayerDAO* player_dao = new ImplPlayerDAO();
 
 	stateInitial = new MainMenuState(player_dao);
@@ -59,7 +60,7 @@ void Aplication::loadConfigs()
 	IMongoConection::initInstance();
 }
 
-SystemConfig* Aplication::getSystemConfig()
+ConfigDB* Aplication::getSystemConfig()
 {
 	return this->config_modular;
 }

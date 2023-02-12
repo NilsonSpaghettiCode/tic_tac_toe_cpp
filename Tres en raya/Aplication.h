@@ -32,11 +32,13 @@ public:
 	Aplication(AplicationState * stateInitial);
 	~Aplication();
 	
-
-	void      changeState(AplicationState *& state) override;
-	void      run()								   override;
-	void	  loadConfigs()						   override;
+	//Methods
 	ConfigDB* getSystemConfig();
+	void	  loadConfigs()						    override;
+	void      changeState(AplicationState *& state) override;
+	void      run()								    override;
+	
+	
 	
 	//States
 	void onGame()           override;

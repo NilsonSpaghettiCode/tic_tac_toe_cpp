@@ -17,7 +17,17 @@ void ConfigDB::load()
     this->uri = uri;
 }
 
+std::string ConfigDB::getDB()
+{
+    return this->db;
+}
+
 std::string ConfigDB::getUri()
 {
     return this->uri;
+}
+
+std::string ConfigDB::getCollection()
+{
+    return this->collection;
 }
