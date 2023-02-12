@@ -30,18 +30,10 @@ void RegisterPlayerState::onRegisterPlayer()
 	std::cout << "Simbolo segundario si eres J2: ";
 	std::cin >> alt_symbol;
 
-	Player new_player(nickname, symbol, alt_symbol);
+	Player* new_player = new Player(nickname, symbol, alt_symbol);
 
-	
-	
-	/*
-	std::string db_name = "bq3g0huudu0newc";
-	std::string collection_player = "players";
-	std::string uri = "";
-	IMongoCollection* collection_mongo = new MongoCollection(collection_player, db_name, uri);
-	PlayerDAO* player_dao = new ImplPlayerDAO(collection_mongo);
-	*/
-
+	this->player_dao->createPlayer(new_player);
+	std::cout << "Player creado" << std::endl;
 	this->onMainMenu();
 }
 

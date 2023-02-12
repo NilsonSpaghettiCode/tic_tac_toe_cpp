@@ -10,9 +10,9 @@ public:
 
 	}
 
-	void onGame() override;
-	void onScoreBoard() override;
+	void onGame()           override;
+	void onScoreBoard()     override;
 	void onRegisterPlayer() override;
-	void onMainMenu() override;
+	void onMainMenu()       override;
 };
 

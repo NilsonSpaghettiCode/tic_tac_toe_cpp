@@ -16,10 +16,10 @@ public:
 
 	//State of Aplication
 
-	virtual void onGame() = 0;
-	virtual void onScoreBoard() = 0;
+	virtual void onGame()			= 0;
+	virtual void onScoreBoard()     = 0;
 	virtual void onRegisterPlayer() = 0;
-	virtual void onMainMenu() = 0;
+	virtual void onMainMenu()       = 0;
 
 	virtual void setContext(IAplication*& context) {
 		this->context = context;

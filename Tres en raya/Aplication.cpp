@@ -26,13 +26,15 @@ void Aplication::onMainMenu()
 
 Aplication::Aplication(AplicationState* stateInitial): state_(nullptr)
 {
+	this->config_modular = new ConfigDB();
 	this->loadConfigs();
 	
-	IMongoCollection* imc = new MongoCollection(this->config_modular->getCollection(), this->config_modular->getDB(), this->config_modular->getUri());
-	PlayerDAO* player_dao = new ImplPlayerDAO();
+	//REFACTORIZAME PORFAVOR!
 
+	IMongoCollection* imc = new MongoCollection(this->config_modular->getCollection(), this->config_modular->getDB(), this->config_modular->getUri());
+	PlayerDAO* player_dao = new ImplPlayerDAO(imc);
 	stateInitial = new MainMenuState(player_dao);
-	this->config_modular = new ConfigDB();
+	
 	this->changeState(stateInitial);
 }
 
@@ -50,7 +52,6 @@ void Aplication::changeState(AplicationState *& state)
 
 void Aplication::run()
 {
-	
 	this->onMainMenu();
 }
 
