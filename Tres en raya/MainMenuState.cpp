@@ -37,10 +37,21 @@ void MainMenuState::onMainMenu()
 	std::cout << "4. Salir" << std::endl;
 	std::cout << "Por favor digite una opción" << std::endl;
 	std::cout << ">> ";
-	int option = 0;
+
+	std::string option = "";
 	std::cin >> option;
 
-	switch (option)
+	int selection = 0;
+	try
+	{
+		selection = std::stoi(option);
+	}
+	catch (const std::exception&)
+	{
+
+	}
+	
+	switch (selection)
 	{
 	case 1:
 		this->onGame();

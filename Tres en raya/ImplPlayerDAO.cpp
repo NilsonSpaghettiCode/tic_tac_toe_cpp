@@ -36,7 +36,7 @@ Player* ImplPlayerDAO::getPlayer(long id)
 void ImplPlayerDAO::createPlayer(Player *& player)
 {
 
-	//Es posible refactorizar mejorar lo que se realiza en esta función
+	//Es posible refactorizar para mejorar lo que se realiza en esta función
 	
 	document player_doc;
 

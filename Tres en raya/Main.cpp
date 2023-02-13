@@ -10,6 +10,7 @@ bool IPlayer::isInitialized = false;
 
 int main()
 {
+
 	AplicationState* state_init = nullptr;
 	app = new Aplication(state_init);
 	app->run();
