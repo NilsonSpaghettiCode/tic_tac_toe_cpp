@@ -1,10 +1,9 @@
 #include "Player.h"
 #include <string>
 
+/*
 Player::Player(std::string nickname, char symbol, char alt_symbol)
 {
-	this->player_id = IPlayer::getVariable();
-
 	this->nickname = nickname;
 	this->symbol = symbol;
 	this->alt_symbol = alt_symbol;
@@ -14,11 +13,22 @@ Player::Player(std::string nickname, char symbol, char alt_symbol)
 	this->losses = 0;
 
 }
+*/
+
+Player::Player(std::string nickname, char symbol, char alt_symbol, int count_games, long wins, long losses)
+{
+	this->nickname = nickname;
+	this->symbol = symbol;
+	this->alt_symbol = alt_symbol;
+	this->count_games = count_games;
+	this->wins = wins;
+	this->losses = losses;
+}
 
 
 std::string Player::to_string()
 {
-	return std::to_string(this->player_id) + "\n" + this->nickname + "\n" + this->symbol + "\n" + this->alt_symbol;
+	return "\n" + this->nickname + "\n" + this->symbol + "\n" + this->alt_symbol;
 }
 
 

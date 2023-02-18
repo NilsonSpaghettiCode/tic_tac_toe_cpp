@@ -1,9 +1,23 @@
 #include "PlayerDAO.h"
 
-#include <bsoncxx/builder/stream/document.hpp>
-#include <bsoncxx/builder/basic/document.hpp>
+#include <cstdint>
+#include <iostream>
+#include <vector>
+#include <string>
 
+#include <mongocxx/client.hpp>
+#include <mongocxx/stdx.hpp>
+#include <mongocxx/uri.hpp>
+#include <mongocxx/instance.hpp>
+
+#include <bsoncxx/builder/basic/document.hpp>
+#include <bsoncxx/builder/stream/document.hpp>
+#include <bsoncxx/builder/stream/array.hpp>
+#include <bsoncxx/builder/stream/helpers.hpp>
 #include <bsoncxx/types.hpp>
+#include <bsoncxx/json.hpp>
+#include <bsoncxx/stdx/string_view.hpp>
+
 
 using namespace bsoncxx::types;
 using namespace bsoncxx::builder::basic;
@@ -21,12 +35,42 @@ ImplPlayerDAO::~ImplPlayerDAO()
 
 std::list<Player> ImplPlayerDAO::getAllPlayers()
 {
-	return std::list<Player>();
+	document doc_filter;
+	mongocxx::options::find options{};
+
+	options.sort(bsoncxx::from_json("{\"wins\": -1}"));
+	options.limit(long(10));
+
+	mongocxx::cursor cursor_players = this->collection_player->getCollection().find(doc_filter.view(), options);
+	
+	std::list<Player> list_players;
+
+	/*
+	* Se accede a los documentos player de la colecciones de players, con la siguiente forma:
+	* {
+	* "nickane"    : value
+	* "symbol"     : value
+	* "alt_symbol" : value
+	* "count_games": value
+	* "wins"       : value
+	* "losses"     : value
+	* }
+	
+	*/
+
+	for (auto it = cursor_players.begin(); it != cursor_players.end(); it++) {
+		
+		bsoncxx::document::view view_player = (*it);
+		Player player = toPlayer(view_player);
+		list_players.push_back(player);
+	}
+
+	return list_players;
 }
 
 Player* ImplPlayerDAO::getPlayer(long id)
 {
-	Player *a = new Player("", 'A', 'B');
+	Player *a = new Player();
 	return a;
 }
 /*
@@ -56,4 +100,19 @@ void ImplPlayerDAO::createPlayer(Player *& player)
 void ImplPlayerDAO::updatePlayer(Player*& player)
 {
 
+}
+
+Player ImplPlayerDAO::toPlayer(bsoncxx::document::view view_document)
+{
+	std::string nickname = std::string(view_document["nickname"].get_string().value);
+
+	char symbol = char(view_document["symbol"].get_int32().value);
+	char alt_symbol = char(view_document["alt_symbol"].get_int32().value);
+
+	int count_games = int(view_document["count_games"].get_int32().value);
+
+	long wins = long(view_document["wins"].get_int64().value);
+	long losses = long(view_document["losses"].get_int64().value);
+
+	return Player(nickname, symbol, alt_symbol, count_games, wins, losses);
 }

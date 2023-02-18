@@ -32,6 +32,8 @@ public:
 	void              createPlayer(Player*& player) override;
 	void              updatePlayer(Player*& player) override;
 
+	Player			  toPlayer(bsoncxx::document::view view_document);
+
 private:
 	IMongoCollection* collection_player;
 

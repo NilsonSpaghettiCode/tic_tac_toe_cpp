@@ -5,52 +5,7 @@
 enum PLAYER_STATE { IN_GAME, WINNER, LOSER, TIED };
 
 
-#include <iostream>
-#include <fstream>
-
-
-
-class IPlayer
-{
-protected:
-	long player_id;
-private:
-	static int _id;
-	static bool isInitialized;
-
-	static void initializeVariable()
-	{
-		if (!isInitialized)
-		{
-			std::ifstream file("player_config.txt");
-			file >> _id;
-			isInitialized = true;
-		}
-	}
-
-public:
-	IPlayer()
-	{
-		this->increaseVariable();
-	}
-	static int getVariable()
-	{
-		initializeVariable();
-		return _id;
-	}
-
-	static void increaseVariable()
-	{
-		initializeVariable();
-		++_id;
-	}
-
-	virtual std::string to_string() = 0;
-
-};
-
-
-class Player : public IEntity, public IPlayer
+class Player : public IEntity
 {
 
 private:
@@ -62,14 +17,17 @@ private:
 	int count_games;
 
 public:
+	Player(std::string nickname = "defaul_user", char symbol = 'X', char alt_symbol = 'O', int count_games = 0, long wins = 0, long losses = 0);
+	//Player(std::string nickname, char symbol = 'X', char alt_symbol = 'O');
+
 	
-	Player(std::string nickname, char symbol = 'X', char alt_symbol = 'O');
+
 
 
 	void increseCountGames();
 	void increaseLosses();
 	void increaseWins();
-	std::string to_string() override;
+	std::string to_string();
 
 
 	//Gets and sets

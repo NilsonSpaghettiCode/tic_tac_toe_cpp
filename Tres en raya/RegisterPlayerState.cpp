@@ -30,7 +30,7 @@ void RegisterPlayerState::onRegisterPlayer()
 	std::cout << "Simbolo segundario si eres J2: ";
 	std::cin >> alt_symbol;
 
-	Player* new_player = new Player(nickname, symbol, alt_symbol);
+	Player* new_player = new Player(nickname, symbol, alt_symbol, 0, 0, 0);
 
 	this->player_dao->createPlayer(new_player);
 	std::cout << "Player creado" << std::endl;

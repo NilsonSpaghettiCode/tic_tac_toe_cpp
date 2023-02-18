@@ -4,6 +4,10 @@
 #include <iostream>
 #include <limits>
 #include <Windows.h>
+
+#include <iomanip>
+#include <fmt/format.h>
+
 /*
 ScoreBoardState::ScoreBoardState() 
 {
@@ -19,6 +23,17 @@ void ScoreBoardState::onGame()
 void ScoreBoardState::onScoreBoard()
 {
 	std::cout << "Tablero de puntuaciones"<< std::endl;
+
+	std::list<Player> players = this->player_dao->getAllPlayers();
+
+	//std::cout << std::setw(20) << "Nombre " << std::setw(6) << "Victorias" << std::setw(6) << "Derrotas" << std::endl;
+
+	//std::cout << std::internal << std::setw(5) << "A"<<std::setw(5)<<"B"<< std::endl;
+
+	for (auto it = players.begin(); it != players.end(); it++)
+	{
+		std::cout << (*it).getNickname() << "\t" << (*it).getWins() << "\t" << (*it).getLosses() <<std::endl;;
+	}
 
 	std::cout << "Presiona cualquier tecla para continuar..." << std::endl;
 	std::cin.ignore();

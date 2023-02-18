@@ -5,8 +5,6 @@
 
 IAplication* app;
 
-int IPlayer::_id = 0;
-bool IPlayer::isInitialized = false;
 
 int main()
 {
