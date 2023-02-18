@@ -2,6 +2,7 @@
 #include "MainMenuState.h"
 
 #include <iostream>
+#include <limits>
 #include <Windows.h>
 /*
 ScoreBoardState::ScoreBoardState() 
@@ -17,10 +18,11 @@ void ScoreBoardState::onGame()
 
 void ScoreBoardState::onScoreBoard()
 {
-	std::cout << "Tablero de punteaciones"<< std::endl;
+	std::cout << "Tablero de puntuaciones"<< std::endl;
 
 	std::cout << "Presiona cualquier tecla para continuar..." << std::endl;
-	getchar();
+	std::cin.ignore();
+	std::cin.get();
 
 	this->onMainMenu();
 }
