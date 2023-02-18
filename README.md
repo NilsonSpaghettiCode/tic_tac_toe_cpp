@@ -9,6 +9,8 @@ A project for fun and test
 
 **Mongocxx:** 3.7.0
 
-
-
-
+## Install packages
+```bash
+./vcpkg install --x-feature=vcpkg.json
+./vcpkg integrate install
+```
