@@ -104,7 +104,7 @@ void ImplPlayerDAO::updatePlayer(Player*& player)
 
 Player ImplPlayerDAO::toPlayer(bsoncxx::document::view view_document)
 {
-	std::string nickname = std::string(view_document["nickname"].get_string().value);
+	std::string nickname = std::string(view_document["nickname"].get_utf8().value);
 
 	char symbol = char(view_document["symbol"].get_int32().value);
 	char alt_symbol = char(view_document["alt_symbol"].get_int32().value);

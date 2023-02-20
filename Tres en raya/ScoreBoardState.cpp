@@ -22,17 +22,21 @@ void ScoreBoardState::onGame()
 
 void ScoreBoardState::onScoreBoard()
 {
-	std::cout << "Tablero de puntuaciones"<< std::endl;
-
+	
 	std::list<Player> players = this->player_dao->getAllPlayers();
+	std::string title = "Tablero de puntuaciones";
+	int width = 50;
 
-	//std::cout << std::setw(20) << "Nombre " << std::setw(6) << "Victorias" << std::setw(6) << "Derrotas" << std::endl;
+	std::cout << std::setw(20) << std::setfill('-') << "" << std::setw(20) << "" << std::setw(10) << "" << std::setfill(' ') << std::endl;
+	std::cout << "|" << std::setfill(' ') << std::setw(width / 2 + title.length() / 2) << title << std::setw(width / 2 - title.length() / 2) << "|" << std::endl;
+	std::cout << std::setw(20) << std::setfill('-') << "" << std::setw(20) << "" << std::setw(10) << "" << std::setfill(' ') << std::endl;
 
-	//std::cout << std::internal << std::setw(5) << "A"<<std::setw(5)<<"B"<< std::endl;
-
+	fmt::print("| {:<20} | {:<10} | {:<10} |\n", "Nombre", "Victorias", "Derrotas");
 	for (auto it = players.begin(); it != players.end(); it++)
 	{
-		std::cout << (*it).getNickname() << "\t" << (*it).getWins() << "\t" << (*it).getLosses() <<std::endl;;
+		//std::cout << (*it).getNickname() << "\t" << (*it).getWins() << "\t" << (*it).getLosses() <<std::endl;
+
+		fmt::print("| {:<20} | {:<10} | {:<10} |\n", (*it).getNickname(), (*it).getWins(), (*it).getLosses());
 	}
 
 	std::cout << "Presiona cualquier tecla para continuar..." << std::endl;
