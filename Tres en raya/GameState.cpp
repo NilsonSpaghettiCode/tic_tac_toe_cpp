@@ -13,22 +13,6 @@ void GameState::initGame()
 {
 	while (!isGameFinished())
 	{
-		/*
-		* for (size_t x = 0; x < 3; x++)
-		{
-			for (size_t y = 0; y < 3; y++)
-			{
-				std::cout << "X" << " | ";
-			}
-			std::cout << "" << std::endl;
-
-		}
-		std::cout << "Digite en que posición quiere poner su simbolo #J1";
-
-		break;
-		
-		*/
-
 		//Método para solicitar entrada de datos jugador
 		int box = -1;
 
@@ -40,12 +24,18 @@ void GameState::initGame()
 		this->showTablero();
 	}
 
-
 }
 
-void GameState::selectPlayer()
+Player* GameState::selectPlayer(int number_player)
 {
-
+	Player* nw_player = new Player();
+	do{
+	std::string _id_player = "";
+	std::cout << "Jugador #" << number_player << ", digite el _id de su jugador: ";
+	std::cin >> _id_player;
+	nw_player = this->player_dao->getPlayer(_id_player);
+	} while (nw_player->getId() == "default_id");
+	return nw_player;
 }
 
 void GameState::initGameBoard()
@@ -251,6 +241,9 @@ int GameState::getInputBox()
 
 void GameState::onGame()
 {
+	this->selectPlayer(1);
+	this->selectPlayer(2);
+
 	this->initGameBoard();
 	this->showTablero();
 

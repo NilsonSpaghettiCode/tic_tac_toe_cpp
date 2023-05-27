@@ -17,6 +17,7 @@
 #include <bsoncxx/types.hpp>
 #include <bsoncxx/json.hpp>
 #include <bsoncxx/stdx/string_view.hpp>
+#include <bsoncxx/oid.hpp>
 
 
 using namespace bsoncxx::types;
@@ -68,14 +69,17 @@ std::list<Player> ImplPlayerDAO::getAllPlayers()
 	return list_players;
 }
 
-Player* ImplPlayerDAO::getPlayer(long id)
+Player* ImplPlayerDAO::getPlayer(std::string id)
 {
-	
-	//auto cursor_players = this->collection_player->getCollection().find_one(make_document("",id));
-	//bsoncxx::document::view view_player = *cursor_players;
-	//Player* player_prueba_one = toPlayer(view_player);
-	Player* p = new Player();
-	return p;
+	bsoncxx::builder::stream::document filter_builder;
+	bsoncxx::oid player_id(id);
+
+	filter_builder << "_id" << player_id;
+	auto cursor_players = this->collection_player->getCollection().find_one(filter_builder.view());
+	bsoncxx::document::view view_player = *cursor_players;
+
+	Player* player = new Player(toPlayer(view_player));
+	return player;
 }
 /*
 * Permite crear un doc jugador desempaquetando sus atributos y agregandolos a un documento de tipo BSON

@@ -18,7 +18,7 @@ private:
 	int count_games;
 
 public:
-	Player(std::string _id = " ", std::string nickname = "defaul_user", char symbol = 'X', char alt_symbol = 'O', int count_games = 0, long wins = 0, long losses = 0);
+	Player(std::string _id = "default_id", std::string nickname = "defaul_user", char symbol = 'X', char alt_symbol = 'O', int count_games = 0, long wins = 0, long losses = 0);
 	//Player(std::string nickname, char symbol = 'X', char alt_symbol = 'O');
 
 	void increseCountGames();

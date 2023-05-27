@@ -20,6 +20,9 @@ private:
 	Casilla::CELL_STATE actualPlayer;
 	std::list<ISuject *> tablero;
 
+	Player* player_1;
+	Player* player_2;
+
 public:
 	GameState(PlayerDAO* player_dao) : AplicationState(player_dao) 
 	{
@@ -27,11 +30,13 @@ public:
 		this->endgame_state = ENDGAME_STATE::TIE;
 		this->actualPlayer = Casilla::J1;
 		this->activePatrons = GAME_PATERNS;
+		player_1 = new Player();
+		player_2 = new Player();
 	}
 	
 	void initGameBoard();
 	void showTablero();
-	void selectPlayer();
+	Player* selectPlayer(int number_player);
 	void initGame();
 	void checkBox(int id_box, Casilla::CELL_STATE nw_state);
 	void setEndGame(ENDGAME_STATE nw_state);
