@@ -1,6 +1,7 @@
 #include "MainMenuState.h"
 #include "ScoreBoardState.h"
 #include "RegisterPlayerState.h"
+#include "GameState.h"
 #include <iostream>
 /*
 MainMenuState::MainMenuState()
@@ -10,7 +11,9 @@ MainMenuState::MainMenuState()
 */
 void MainMenuState::onGame()
 {
-	std::cout << "No implementado" << std::endl;
+	AplicationState* aux_state = new GameState(this->player_dao);
+	this->context->changeState(aux_state);
+	this->context->onGame();
 }
 
 void MainMenuState::onScoreBoard()

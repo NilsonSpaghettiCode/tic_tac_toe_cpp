@@ -1,6 +1,6 @@
 #include "Casilla.h"
 #include "IObserver.h"
-
+#include "PatronTicTacToe.h"
 Casilla::Casilla(int id)
 {
     this->id = id;
@@ -30,7 +30,7 @@ int Casilla::getStateActual()
 
 void Casilla::notifyAllObservers(void)
 {
-    for (auto it = this->observadores.begin(); it != this->observadores.end(); it++)
+    for (auto it = this->observers.begin(); it != this->observers.end(); it++)
     {
         (*it)->Update(this->id);
     }
@@ -38,7 +38,24 @@ void Casilla::notifyAllObservers(void)
 
 void Casilla::addObserver(IObserver*& observer)
 {
-    this->observadores.push_back(observer);
+    this->observers.push_back(observer);
+}
+
+void Casilla::removeObserver(int id)
+{
+    std::list<IObserver*>::iterator to_remove;
+    for (auto it = this->observers.begin(); it != this->observers.end(); it++)
+    {
+        PatronTicTacToe* patron_to_remove = dynamic_cast<PatronTicTacToe*>((*it));
+        if (patron_to_remove->getId() == id)
+        {
+            to_remove = it;
+            break;
+        }
+    }
+    
+    this->observers.erase(to_remove);
+    std::cout << "Eliminado" << std::endl;
 }
 
 void Casilla::showCasilla()

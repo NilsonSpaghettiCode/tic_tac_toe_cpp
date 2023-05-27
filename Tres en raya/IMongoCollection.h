@@ -16,8 +16,8 @@ public:
 	virtual void				 setCollection(std::string name_collection) = 0;
 
 	virtual void                 setDB(std::string db_name) override        = 0;
-	virtual mongocxx::database   getDB() override							= 0;
-	virtual mongocxx::client*     getConnection() override					= 0;
+	virtual mongocxx::database   getDB()                    override		= 0;
+	virtual mongocxx::client*    getConnection()            override    	= 0;
 	
 private:
 

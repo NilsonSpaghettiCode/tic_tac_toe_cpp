@@ -5,26 +5,28 @@
 class Casilla : public ISuject
 {
 private:
-    int state;
-    char symbol;
-    std::list<IObserver*> observadores;
+    int                   state;
+    char                  symbol;
+    std::list<IObserver*> observers;
 
 public:
+
     int id;
-
     enum CELL_STATE { TVOID, J1, J2 };
-
+    
+    //Constructor
     Casilla(int id = 0);
     
-    void changeState(CELL_STATE nw_state);
+    //Metodos
+
+    int  getStateActual();
 
     void showState();
-
     void showCasilla();
 
-    int getStateActual();
-
+   
+    void changeState(CELL_STATE nw_state);
     void notifyAllObservers(void);
-
     void addObserver(IObserver*& observer);
+    void removeObserver(int id) override;
 };

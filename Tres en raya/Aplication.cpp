@@ -32,8 +32,8 @@ Aplication::Aplication(AplicationState* stateInitial): state_(nullptr)
 	//REFACTORIZAME PORFAVOR!
 
 	IMongoCollection* imc = new MongoCollection(this->config_modular->getCollection(), this->config_modular->getDB(), this->config_modular->getUri());
-	PlayerDAO* player_dao = new ImplPlayerDAO(imc);
-	stateInitial = new MainMenuState(player_dao);
+	PlayerDAO* model_player_dao = new ImplPlayerDAO(imc);
+	stateInitial = new MainMenuState(model_player_dao);
 	
 	this->changeState(stateInitial);
 }
