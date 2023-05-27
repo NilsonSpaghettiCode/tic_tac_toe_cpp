@@ -28,13 +28,7 @@ void PatronTicTacToe::addSuject(ISuject*& casilla)
 void PatronTicTacToe::removeSujects()
 {
     this->state_patron = PATRON_STATES::OFF;
-    /*
-    * 
-    * for (auto it = this->observed_sujects.begin(); it != this->observed_sujects.end();it++)
-    {
-        (*it)->removeObserver(this->getId());
-    }
-    */
+    this->game->removePatron();
     std::cout << "Patron OFF" << std::endl;
 }
 

@@ -3,15 +3,20 @@
 #include "Suject.h"
 #include <list>
 #include "Casilla.h"
+#define GAME_PATERNS 8
+
 enum GAME_STATE { WAITING, START, FINISHED };
 enum ENDGAME_STATE { J1, J2, TIE };
 class AplicationState;
+
+
 
 class GameState : public AplicationState
 {
 private:
 	int state;
 	int endgame_state;
+	int activePatrons;
 	Casilla::CELL_STATE actualPlayer;
 	std::list<ISuject *> tablero;
 
@@ -21,6 +26,7 @@ public:
 		this->state = WAITING;
 		this->endgame_state = ENDGAME_STATE::TIE;
 		this->actualPlayer = Casilla::J1;
+		this->activePatrons = GAME_PATERNS;
 	}
 	
 	void initGameBoard();
@@ -33,7 +39,10 @@ public:
 	bool isGameFinished();
 	Casilla::CELL_STATE getActualPlayer();
 	void changeShift();
+	void removePatron();
+	void verifyState();
 	int getInputBox();
+
 	//States
 	void onGame()			override;
 	void onScoreBoard()		override;

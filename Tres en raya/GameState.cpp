@@ -40,10 +40,12 @@ void GameState::initGame()
 		this->showTablero();
 	}
 
+
 }
 
 void GameState::selectPlayer()
 {
+
 }
 
 void GameState::initGameBoard()
@@ -187,7 +189,8 @@ void GameState::setEndGame(ENDGAME_STATE nw_state)
 bool GameState::isGameFinished()
 {
 	bool isGameFinished = false;
-	if (this->state == GAME_STATE::FINISHED)
+
+	if (this->state == GAME_STATE::FINISHED || this->activePatrons == 0)
 	{
 		isGameFinished = true;
 	}
@@ -214,6 +217,27 @@ void GameState::changeShift()
 	}
 }
 
+void GameState::removePatron()
+{
+	this->activePatrons--;
+}
+
+void GameState::verifyState()
+{
+	if (this->endgame_state == ENDGAME_STATE::J1)
+	{
+		std::cout << "El ganador es el jugador #1" << std::endl;
+
+	}
+	else if (this->endgame_state == ENDGAME_STATE::J2)
+	{
+		std::cout << "El ganador es el jugador #2!" << std::endl;
+	}
+	else {
+		std::cout << "Empate!" << std::endl;
+	}
+}
+
 int GameState::getInputBox()
 {
 	int positioBox = -1;
@@ -229,9 +253,9 @@ void GameState::onGame()
 {
 	this->initGameBoard();
 	this->showTablero();
-	
 
 	this->initGame();
+	this->verifyState();
 	this->onMainMenu();
 }
 

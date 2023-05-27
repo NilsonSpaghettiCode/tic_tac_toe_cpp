@@ -15,8 +15,9 @@ Player::Player(std::string nickname, char symbol, char alt_symbol)
 }
 */
 
-Player::Player(std::string nickname, char symbol, char alt_symbol, int count_games, long wins, long losses)
+Player::Player(std::string _id, std::string nickname, char symbol, char alt_symbol, int count_games, long wins, long losses)
 {
+	this->_id = _id;
 	this->nickname = nickname;
 	this->symbol = symbol;
 	this->alt_symbol = alt_symbol;
@@ -37,6 +38,16 @@ std::string Player::to_string()
 void Player::setNickname(std::string nickname)
 {
 	this->nickname = nickname;
+}
+
+std::string Player::getId()
+{
+	return this->_id;
+}
+
+void Player::setId(std::string nw_id)
+{
+	this->_id = nw_id;
 }
 
 void Player::setSymbol(char symbol)

@@ -70,8 +70,12 @@ std::list<Player> ImplPlayerDAO::getAllPlayers()
 
 Player* ImplPlayerDAO::getPlayer(long id)
 {
-	Player *a = new Player();
-	return a;
+	
+	//auto cursor_players = this->collection_player->getCollection().find_one(make_document("",id));
+	//bsoncxx::document::view view_player = *cursor_players;
+	//Player* player_prueba_one = toPlayer(view_player);
+	Player* p = new Player();
+	return p;
 }
 /*
 * Permite crear un doc jugador desempaquetando sus atributos y agregandolos a un documento de tipo BSON
@@ -94,7 +98,8 @@ void ImplPlayerDAO::createPlayer(Player *& player)
 	player_doc.append(kvp("wins", b_int64{ player->getWins()} ));
 	player_doc.append(kvp("losses", b_int64{ player->getLosses()}));
 
-	this->collection_player->getCollection().insert_one(player_doc.view());
+	std::string nw_id = this->collection_player->getCollection().insert_one(player_doc.view()).get().inserted_id().get_oid().value.to_string();
+	player->setId(nw_id);
 }
 
 void ImplPlayerDAO::updatePlayer(Player*& player)
@@ -104,6 +109,8 @@ void ImplPlayerDAO::updatePlayer(Player*& player)
 
 Player ImplPlayerDAO::toPlayer(bsoncxx::document::view view_document)
 {
+	std::string _id = view_document["_id"].get_oid().value.to_string();
+
 	std::string nickname = std::string(view_document["nickname"].get_utf8().value);
 
 	char symbol = char(view_document["symbol"].get_int32().value);
@@ -114,5 +121,5 @@ Player ImplPlayerDAO::toPlayer(bsoncxx::document::view view_document)
 	long wins = long(view_document["wins"].get_int64().value);
 	long losses = long(view_document["losses"].get_int64().value);
 
-	return Player(nickname, symbol, alt_symbol, count_games, wins, losses);
+	return Player(_id, nickname, symbol, alt_symbol, count_games, wins, losses);
 }
