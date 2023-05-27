@@ -1,6 +1,6 @@
 #include "Player.h"
 #include <string>
-
+#include <sstream> 
 /*
 Player::Player(std::string nickname, char symbol, char alt_symbol)
 {
@@ -29,7 +29,9 @@ Player::Player(std::string _id, std::string nickname, char symbol, char alt_symb
 
 std::string Player::to_string()
 {
-	return "\n" + this->nickname + "\n" + this->symbol + "\n" + this->alt_symbol;
+	std::stringstream ss;
+	ss << this->getWins();
+	return "\n" + this->_id + "\n" + this->nickname + "\n" + this->symbol + "\n" + this->alt_symbol + "\n" +ss.str();
 }
 
 

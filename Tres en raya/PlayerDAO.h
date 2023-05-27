@@ -13,9 +13,9 @@ private:
 
 public:
 	virtual std::list<Player> getAllPlayers()			     = 0;
-	virtual Player*			  getPlayer(std::string id)			 = 0;
+	virtual Player*			  getPlayer(std::string id)		 = 0;
 	virtual void			  createPlayer(Player *& player) = 0;
-	virtual void			  updatePlayer(Player *& player) = 0;
+	virtual bool			  updatePlayer(Player *& player) = 0;
 };
 
 
@@ -28,9 +28,9 @@ public:
 	~ImplPlayerDAO();
 
 	std::list<Player> getAllPlayers()               override;
-	Player*           getPlayer(std::string id)			override;
+	Player*           getPlayer(std::string id)		override;
 	void              createPlayer(Player*& player) override;
-	void              updatePlayer(Player*& player) override;
+	bool              updatePlayer(Player*& player) override;
 
 	Player			  toPlayer(bsoncxx::document::view view_document);
 

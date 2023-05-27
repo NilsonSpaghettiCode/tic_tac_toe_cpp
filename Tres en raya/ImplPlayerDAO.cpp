@@ -106,8 +106,47 @@ void ImplPlayerDAO::createPlayer(Player *& player)
 	player->setId(nw_id);
 }
 
-void ImplPlayerDAO::updatePlayer(Player*& player)
+bool ImplPlayerDAO::updatePlayer(Player*& player)
 {
+	bsoncxx::oid player_id(player->getId());
+	/*
+	*	Documento a actualizar
+	*/
+	document document_to_update;
+	document_to_update.append(kvp("_id",player_id));
+
+	/*
+	*	Datos a actualizar del documento
+	*/
+
+	document data_to_update;
+	data_to_update.append(kvp("nickname", player->getNickname()));
+
+	data_to_update.append(kvp("symbol", player->getSymbol()));
+	data_to_update.append(kvp("alt_symbol", player->getAltSymbol()));
+
+	data_to_update.append(kvp("count_games", player->getCountGames()));
+
+	data_to_update.append(kvp("wins", b_int64{ player->getWins() }));
+	data_to_update.append(kvp("losses", b_int64{ player->getLosses() }));
+	
+	document player_data_to_update;
+	player_data_to_update.append(kvp("$set",data_to_update));
+
+	try
+	{
+		auto cursor_players = this->collection_player->getCollection().update_one(document_to_update.view(), player_data_to_update.view());
+		if (cursor_players->modified_count() > 0)
+		{
+			return true;
+		}
+	}
+	catch (const std::exception& a)
+	{
+		std::cout << "ERROR:" << a.what() << std::endl;
+		return false;
+	}
+	
 
 }
 

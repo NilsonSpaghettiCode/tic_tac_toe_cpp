@@ -33,7 +33,16 @@ Player* GameState::selectPlayer(int number_player)
 	std::string _id_player = "";
 	std::cout << "Jugador #" << number_player << ", digite el _id de su jugador: ";
 	std::cin >> _id_player;
-	nw_player = this->player_dao->getPlayer(_id_player);
+	try
+	{
+		nw_player = this->player_dao->getPlayer(_id_player);
+		std::cout <<"Encontrado: "<< nw_player->to_string()<<std::endl;
+	}
+	catch (const std::exception&)
+	{
+		std::cout << "Digite un número valida" << std::endl;
+	}
+	
 	} while (nw_player->getId() == "default_id");
 	return nw_player;
 }
@@ -216,16 +225,33 @@ void GameState::verifyState()
 {
 	if (this->endgame_state == ENDGAME_STATE::J1)
 	{
-		std::cout << "El ganador es el jugador #1" << std::endl;
+		this->player_1->increaseWins();
+		this->player_2->increaseLosses();
 
+		std::cout << "El ganador es el jugador #1" << std::endl;
 	}
 	else if (this->endgame_state == ENDGAME_STATE::J2)
 	{
+		this->player_2->increaseWins();
+		this->player_1->increaseLosses();
+		
 		std::cout << "El ganador es el jugador #2!" << std::endl;
 	}
 	else {
 		std::cout << "Empate!" << std::endl;
 	}
+
+	try
+	{
+		this->player_dao->updatePlayer(player_1);
+		this->player_dao->updatePlayer(player_2);
+
+	}
+	catch (const std::exception&)
+	{
+		std::cout << "Error actualizando resultado" << std::endl;
+	}
+	
 }
 
 int GameState::getInputBox()
@@ -241,8 +267,8 @@ int GameState::getInputBox()
 
 void GameState::onGame()
 {
-	this->selectPlayer(1);
-	this->selectPlayer(2);
+	this->player_1 = this->selectPlayer(1);
+	this->player_2 = this->selectPlayer(2);
 
 	this->initGameBoard();
 	this->showTablero();
