@@ -29,22 +29,15 @@ void GameState::initGame()
 		
 		*/
 
-		
-		this->checkBox(1, Casilla::J1);
-		this->checkBox(7, Casilla::J2);
+		//Método para solicitar entrada de datos jugador
+		int box = -1;
 
-		this->checkBox(3, Casilla::J1);
-		this->checkBox(2, Casilla::J2);
+		Casilla::CELL_STATE cellStatePlayer = getActualPlayer();
+		box = getInputBox();
 
-
-		this->checkBox(9, Casilla::J1);
-		this->checkBox(5, Casilla::J2);
-
-
-		this->checkBox(4, Casilla::J1);
-		this->checkBox(8, Casilla::J2);
-		
-	
+		this->checkBox(box, cellStatePlayer);
+		this->changeShift();
+		this->showTablero();
 	}
 
 }
@@ -143,11 +136,25 @@ void GameState::initGameBoard()
 
 void GameState::showTablero()
 {
+	int c = 1;
 	for (auto it = this->tablero.begin(); it != this->tablero.end(); it++)
 	{
 		
 		Casilla* aux = dynamic_cast<Casilla*>((*it));
-		aux->showCasilla();
+		if (c == 2 || c == 5 || c == 8)
+		{
+			std::cout << "|" << aux->getStateActual() << "|";
+		}
+		else {
+			std::cout <<aux->getStateActual();
+		}
+
+		if (((c % 3) == 0) )
+		{
+			std::cout<<std::endl;
+			std::cout<<"-----"<< std::endl;
+		}
+		c++;
 	}
 }
 
@@ -188,10 +195,40 @@ bool GameState::isGameFinished()
 	return isGameFinished;
 }
 
+Casilla::CELL_STATE GameState::getActualPlayer()
+{
+	Casilla::CELL_STATE player = this->actualPlayer;
+
+	return player;
+
+}
+
+void GameState::changeShift()
+{
+	if (this->actualPlayer == Casilla::J1)
+	{
+		this->actualPlayer = Casilla::J2;
+	}
+	else {
+		this->actualPlayer = Casilla::J1;
+	}
+}
+
+int GameState::getInputBox()
+{
+	int positioBox = -1;
+	
+	std::cout << "Jugador #" << this->actualPlayer << ", digite una celda: ";
+	std::cin >> positioBox;
+
+	std::cout << "\n";
+	return positioBox;
+}
+
 void GameState::onGame()
 {
 	this->initGameBoard();
-	//this->showTablero();
+	this->showTablero();
 	
 
 	this->initGame();

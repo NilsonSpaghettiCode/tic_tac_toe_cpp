@@ -12,6 +12,7 @@ class GameState : public AplicationState
 private:
 	int state;
 	int endgame_state;
+	Casilla::CELL_STATE actualPlayer;
 	std::list<ISuject *> tablero;
 
 public:
@@ -19,18 +20,20 @@ public:
 	{
 		this->state = WAITING;
 		this->endgame_state = ENDGAME_STATE::TIE;
+		this->actualPlayer = Casilla::J1;
 	}
 	
 	void initGameBoard();
 	void showTablero();
 	void selectPlayer();
-
 	void initGame();
 	void checkBox(int id_box, Casilla::CELL_STATE nw_state);
 	void setEndGame(ENDGAME_STATE nw_state);
+
 	bool isGameFinished();
-
-
+	Casilla::CELL_STATE getActualPlayer();
+	void changeShift();
+	int getInputBox();
 	//States
 	void onGame()			override;
 	void onScoreBoard()		override;
